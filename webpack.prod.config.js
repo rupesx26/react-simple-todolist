@@ -1,12 +1,16 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require("path")
 
 module.exports = {
+  mode: "production",
   entry: "./app/index.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "./bundle.js"
   },
+
+
   module: {
     rules: [
       {
@@ -24,15 +28,10 @@ module.exports = {
       template: "./app/index.html",
       hash: true,
       filename: "index.html"
+    }),
+    new BundleAnalyzerPlugin({
+      generateStatsFile: true
     })
   ],
-
-  devServer: {
-    // configuration for webpack-dev-server
-    // contentBase: './app/public',  //source of static assets
-    contentBase: path.join(__dirname, 'dist'),
-    writeToDisk: true,
-    port: 9000 // port to run dev-server
-  }
 };
 
