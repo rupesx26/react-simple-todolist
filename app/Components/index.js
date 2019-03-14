@@ -19,6 +19,7 @@ class TodoApp extends Component {
 
     handleInput(e) {
         const itemText = e.target.value
+        //create currentItem object
         const currentItem = {text: itemText, key: Date.now()}
         this.setState({
             currentItem
@@ -28,10 +29,11 @@ class TodoApp extends Component {
     addListItem(e) {
         e.preventDefault()
         const newItem = this.state.currentItem
+        //check text is not empty
         if(newItem.text !== ''){
             //to create array of object
             const items = [...this.state.items, newItem]
-           // console.log(items);
+            console.log(items);
             //to clear input
             this.setState({
                 items: items,
